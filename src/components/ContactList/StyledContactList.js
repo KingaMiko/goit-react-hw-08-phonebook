@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
 export const StyledList = styled.ul`
-  background-color: #ba90c6;
+  background-color: rgba(186, 144, 198, 0.8);
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 350px;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
 `;
 
 export const StyledItem = styled.li`
   background-color: #fdf4f5;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
   padding: 10px;
   margin-bottom: 5px;

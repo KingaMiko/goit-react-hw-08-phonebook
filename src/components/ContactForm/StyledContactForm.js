@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const StyledForm = styled.form`
-  background-color: #ba90c6;
+  background-color: rgba(186, 144, 198, 0.8);
   display: flex;
-  width: 350px;
+  min-width: 290px;
+
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
 `;
 
