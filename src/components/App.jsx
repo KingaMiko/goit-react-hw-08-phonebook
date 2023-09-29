@@ -1,5 +1,5 @@
 import { lazy, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { useDispatch } from 'react-redux';
@@ -48,6 +48,7 @@ export const App = () => {
           }
         />
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

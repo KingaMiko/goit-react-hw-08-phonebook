@@ -1,20 +1,17 @@
 import { Header, Wrapper } from 'components/StyledApp';
+import { LoginForm } from 'components/LoginForm/LoginForm';
+import { Helmet } from 'react-helmet';
 
 export default function LoginPage() {
   return (
-    <Wrapper>
-      <Header>Login</Header>
-      <form autoComplete="off">
-        <label>
-          Email
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Password
-          <input type="password" name="password" />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
-    </Wrapper>
+    <>
+      <Helmet>
+        <title> Login</title>
+      </Helmet>
+      <Wrapper>
+        <Header>Login</Header>
+        <LoginForm />
+      </Wrapper>
+    </>
   );
 }
