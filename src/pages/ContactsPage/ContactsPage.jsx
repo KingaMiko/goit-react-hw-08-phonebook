@@ -24,7 +24,7 @@ import {
   Header,
 } from 'components/StyledApp';
 
-export const App = () => {
+export default function ContactsPage() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
@@ -80,4 +80,4 @@ export const App = () => {
       )}
     </Wrapper>
   );
-};
+}
