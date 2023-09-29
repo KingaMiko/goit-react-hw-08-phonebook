@@ -21,26 +21,3 @@ li {
 input {
   outline: none;
 }
-
-button {
-  font-size: 15px;
-  cursor: pointer;
-  display: block;
-  min-width: 120px;
-  height: 30px;
-  text-align: center;
-  color: black;
-  border: none;
-  border-radius: 3px;
-  background: #c0dbea;
-  box-shadow: 0 1px #999;
-  transition: all 0.1s ease-out;
-  font-weight: 500;
-}
-
-button:hover {
-  text-decoration: bold;
-  background: rgb(141, 181, 224);
-  box-shadow: 0 2px #666;
-  transform: translateY(2px);
-}
