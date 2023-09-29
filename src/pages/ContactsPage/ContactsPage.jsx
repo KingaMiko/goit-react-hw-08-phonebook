@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import {
   addContact,
   deleteContact,
@@ -62,22 +63,27 @@ export default function ContactsPage() {
   );
 
   return (
-    <Wrapper>
-      <Header>Phonebook</Header>
-      <ContactForm onSubmit={handleSubmit} />
-      <StyledTitleContacts>Contacts</StyledTitleContacts>
-      <StyledAllContacts>All contacts: {contacts.length}</StyledAllContacts>
-      <Filter value={filter} onChange={handleFilterChange} />
-      {isLoading && !error && <b>Request in progress...</b>}
-      {error && <div style={{ color: 'red' }}>{error.message}</div>}
-      {visibleContacts.length > 0 ? (
-        <ContactList
-          contacts={visibleContacts}
-          onDeleteContact={handleDelete}
-        />
-      ) : (
-        <p>No contacts available.</p>
-      )}
-    </Wrapper>
+    <>
+      <Helmet>
+        <title> Contacs </title>
+      </Helmet>
+      <Wrapper>
+        <Header>Phonebook</Header>
+        <ContactForm onSubmit={handleSubmit} />
+        <StyledTitleContacts>Contacts</StyledTitleContacts>
+        <StyledAllContacts>All contacts: {contacts.length}</StyledAllContacts>
+        <Filter value={filter} onChange={handleFilterChange} />
+        {isLoading && !error && <b>Request in progress...</b>}
+        {error && <div style={{ color: 'red' }}>{error.message}</div>}
+        {visibleContacts.length > 0 ? (
+          <ContactList
+            contacts={visibleContacts}
+            onDeleteContact={handleDelete}
+          />
+        ) : (
+          <p>No contacts available.</p>
+        )}
+      </Wrapper>
+    </>
   );
 }
