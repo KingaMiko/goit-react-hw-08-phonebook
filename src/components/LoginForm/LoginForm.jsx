@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-import { Box, TextField, Button } from '@mui/material';
+import { Box, TextField, Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,17 @@ export const LoginForm = () => {
       >
         Log In
       </Button>
+      <Typography
+        variant="body2"
+        style={{
+          marginTop: '10px',
+          marginBottom: '-10px',
+          color: '#616161',
+          fontSize: '12px',
+        }}
+      >
+        Don't have an account? <Link to="/register">Register here</Link>
+      </Typography>
     </Box>
   );
 };

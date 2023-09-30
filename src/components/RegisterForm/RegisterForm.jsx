@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
-import { Box, TextField, Button } from '@mui/material';
+import { Box, TextField, Button, Typography } from '@mui/material';
+import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -9,7 +11,21 @@ export const RegisterForm = () => {
     const form = e.currentTarget;
 
     if (form.elements.password.value !== form.elements.confirmPassword.value) {
-      alert('Passwords do not match!');
+      toast.error(
+        "Oops! The passwords you entered don't match. Please try again."
+      );
+      return;
+    }
+
+    const password = form.elements.password.value;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasDigit = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#\$%\^\&*\)\(+=._-]/.test(password);
+
+    if (password.length < 8 || !hasUpperCase || !hasDigit || !hasSpecialChar) {
+      toast.error(
+        'Oops! Your password must meet certain requirements. Check the list and try again.'
+      );
       return;
     }
 
@@ -20,6 +36,7 @@ export const RegisterForm = () => {
         password: form.elements.password.value,
       })
     );
+
     form.reset();
   };
 
@@ -62,7 +79,7 @@ export const RegisterForm = () => {
         type="password"
         name="password"
         label="Password"
-        placeholder="Enter your password"
+        placeholder="Enter your password*"
         required
         fullWidth
         InputLabelProps={{
@@ -70,11 +87,12 @@ export const RegisterForm = () => {
         }}
         sx={{ marginBottom: '10px' }}
       />
+
       <TextField
         type="password"
         name="confirmPassword"
         label="Confirm Password"
-        placeholder="Re-enter your password"
+        placeholder="Confirm password"
         required
         fullWidth
         InputLabelProps={{
@@ -82,6 +100,23 @@ export const RegisterForm = () => {
         }}
         sx={{ marginBottom: '10px' }}
       />
+      <Typography
+        variant="body2"
+        style={{
+          marginTop: 5,
+          marginBottom: 5,
+          color: '#616161',
+          fontSize: '12px',
+        }}
+      >
+        * Password requirements:
+        <ul style={{ margin: 5, paddingLeft: 16 }}>
+          <li>Minimum 8 characters</li>
+          <li>At least one uppercase letter</li>
+          <li>At least one digit</li>
+          <li>At least one special character (e.g. !, @, #)</li>
+        </ul>
+      </Typography>
       <Button
         type="submit"
         variant="contained"
@@ -90,6 +125,17 @@ export const RegisterForm = () => {
       >
         Register
       </Button>
+      <Typography
+        variant="body2"
+        style={{
+          marginTop: '10px',
+          marginBottom: '-10px',
+          color: '#616161',
+          fontSize: '12px',
+        }}
+      >
+        Already have an account? <Link to="/login">Log in here</Link>
+      </Typography>
     </Box>
   );
 };
