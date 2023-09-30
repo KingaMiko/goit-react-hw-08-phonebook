@@ -1,12 +1,7 @@
+import { Button, TextField, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { useForm } from '../hooks/useForm';
-import {
-  StyledForm,
-  StyledLabel,
-  StyledInputName,
-  StyledInputNumber,
-} from './StyledContactForm';
 
 const ContactForm = () => {
   const [values, handleChange, resetForm] = useForm({ name: '', number: '' });
@@ -19,34 +14,55 @@ const ContactForm = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <StyledLabel>
-        <StyledInputName
-          value={values.name}
-          onChange={handleChange}
-          type="text"
-          name="name"
-          placeholder="Name"
-          pattern="^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+(\s[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </StyledLabel>
-      <StyledLabel>
-        <StyledInputNumber
-          value={values.number}
-          onChange={handleChange}
-          type="tel"
-          name="number"
-          placeholder="Number"
-          pattern="(\+48)?\s?(\d{3}-\d{3}-\d{3}|\d{3}\s\d{3}\s\d{3}|\d{9,11})"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </StyledLabel>
-
-      <button type="submit">Add contact</button>
-    </StyledForm>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      autoComplete="off"
+      width="300px"
+      bgcolor="rgba(255, 255, 255, 0.8)"
+      padding="20px"
+      borderRadius="3px"
+      boxShadow="0 9px 50px hsla(20, 67%, 75%, 0.31)"
+    >
+      <TextField
+        value={values.name}
+        onChange={handleChange}
+        type="text"
+        name="name"
+        label="Name"
+        placeholder="Name"
+        required
+        fullWidth
+        InputLabelProps={{
+          shrink: true,
+        }}
+        sx={{ marginBottom: '10px' }}
+      />
+      <TextField
+        value={values.number}
+        onChange={handleChange}
+        type="tel"
+        name="number"
+        label="Number"
+        placeholder="Number"
+        fullWidth
+        required
+        sx={{ marginBottom: '10px' }}
+        pattern="(\+48)?\s?(\d{3}-\d{3}-\d{3}|\d{3}\s\d{3}\s\d{3}|\d{9,11})"
+        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        sx={{ marginTop: '10px', width: '100%' }}
+      >
+        Add contact
+      </Button>
+    </Box>
   );
 };
 

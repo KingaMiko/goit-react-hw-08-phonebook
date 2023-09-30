@@ -1,16 +1,12 @@
-import React from 'react';
-import { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import {
+  fetchContacts,
   addContact,
   deleteContact,
-  fetchContacts,
 } from 'redux/contacts/operations';
 import { setFilter } from 'redux/contacts/filterSlice';
-import ContactList from 'components/ContactList/index';
-import ContactForm from 'components/ContactForm/index';
-import Filter from 'components/Filter/index';
 import {
   selectContacts,
   selectFilter,
@@ -18,12 +14,11 @@ import {
   selectIsLoading,
   selectVisibleContacts,
 } from 'redux/contacts/selectors';
-import {
-  StyledAllContacts,
-  StyledTitleContacts,
-  Wrapper,
-  Header,
-} from 'components/StyledApp';
+import ContactList from 'components/ContactList/index';
+import ContactForm from 'components/ContactForm/index';
+import Filter from 'components/Filter/index';
+import { Box, Typography, CircularProgress, Alert } from '@mui/material';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -48,42 +43,80 @@ export default function ContactsPage() {
     [dispatch]
   );
 
-  const handleFilterChange = useCallback(
-    e => {
-      dispatch(setFilter(e.target.value));
-    },
-    [dispatch]
-  );
-
-  const handleDelete = useCallback(
-    id => {
-      dispatch(deleteContact(id));
-    },
-    [dispatch]
-  );
-
   return (
     <>
       <Helmet>
-        <title> Contacs </title>
+        <title>Contacts</title>
       </Helmet>
-      <Wrapper>
-        <Header>Phonebook</Header>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        height="100vh"
+        background="linear-gradient(45deg, #f2f2f2 30%, #d9d9d9 90%)"
+        overflow="hidden"
+        position="relative"
+      >
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          width="100%"
+          height="100%"
+          zIndex="-1"
+          overflow="hidden"
+        >
+          <ContactsIcon
+            style={{
+              fontSize: '20vw',
+              opacity: 0.1,
+              position: 'absolute',
+              top: '20%',
+              left: '10%',
+              transform: 'rotate(25deg)',
+            }}
+          />
+          <ContactsIcon
+            style={{
+              fontSize: '20vw',
+              opacity: 0.1,
+              position: 'absolute',
+              bottom: '20%',
+              right: '10%',
+              transform: 'rotate(-25deg)',
+            }}
+          />
+        </Box>
+
+        <Typography
+          variant="h3"
+          component="h1"
+          textAlign="center"
+          color="rgba(0,0,0,0.7)"
+          fontWeight="bold"
+          mb={3}
+        >
+          Your Contacts
+        </Typography>
         <ContactForm onSubmit={handleSubmit} />
-        <StyledTitleContacts>Contacts</StyledTitleContacts>
-        <StyledAllContacts>All contacts: {contacts.length}</StyledAllContacts>
-        <Filter value={filter} onChange={handleFilterChange} />
-        {isLoading && !error && <b>Request in progress...</b>}
-        {error && <div style={{ color: 'red' }}>{error.message}</div>}
+        <Typography variant="h6" component="p" mt={2}>
+          All contacts: {contacts.length}
+        </Typography>
+        <Filter />
+        {isLoading && <CircularProgress />}
+        {error && <Alert severity="error">{error.message}</Alert>}
         {visibleContacts.length > 0 ? (
           <ContactList
             contacts={visibleContacts}
-            onDeleteContact={handleDelete}
+            onDeleteContact={id => dispatch(deleteContact(id))}
           />
         ) : (
-          <p>No contacts available.</p>
+          <Typography variant="body1" mt={2}>
+            No contacts available.
+          </Typography>
         )}
-      </Wrapper>
+      </Box>
     </>
   );
 }

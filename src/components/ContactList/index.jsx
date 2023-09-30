@@ -2,12 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
 import { selectContacts, selectFilter } from 'redux/contacts/selectors';
-import {
-  StyledList,
-  StyledItem,
-  StyledContact,
-  StyledName,
-} from './StyledContactList';
+import { Box, Typography, IconButton } from '@mui/material';
+import PhoneIcon from '@mui/icons-material/Phone';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { theme } from 'components/theme';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
@@ -23,19 +21,38 @@ const ContactList = () => {
   };
 
   return (
-    <StyledList>
-      {filteredContacts.map(({ id, name, number }) => (
-        <StyledItem key={id}>
-          <StyledContact>
-            <StyledName>{name}</StyledName>
-            <span>{number}</span>
-          </StyledContact>
-          <button type="button" onClick={() => handleDelete(id)}>
-            Delete
-          </button>
-        </StyledItem>
+    <Box sx={{ width: '300px', mt: 3 }}>
+      {filteredContacts.map(({ id, name, number }, index) => (
+        <Box
+          key={id}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '10px 0',
+            position: 'relative',
+            borderBottom: '1px solid #ddd',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <PhoneIcon color="primary" />
+            <Typography variant="h6" color="secondary" noWrap>
+              {name}
+            </Typography>
+            <Typography variant="body1" noWrap sx={{ marginLeft: 2 }}>
+              {number}
+            </Typography>
+          </Box>
+          <IconButton
+            onClick={() => handleDelete(id)}
+            size="small"
+            sx={{ color: theme.palette.primary.main }}
+          >
+            <DeleteOutlineIcon />
+          </IconButton>
+        </Box>
       ))}
-    </StyledList>
+    </Box>
   );
 };
 
