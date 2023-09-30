@@ -20,7 +20,7 @@ export const RegisterForm = () => {
     const password = form.elements.password.value;
     const hasUpperCase = /[A-Z]/.test(password);
     const hasDigit = /[0-9]/.test(password);
-    const hasSpecialChar = /[!@#\$%\^\&*\)\(+=._-]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()+=._-]/.test(password);
 
     if (password.length < 8 || !hasUpperCase || !hasDigit || !hasSpecialChar) {
       toast.error(
