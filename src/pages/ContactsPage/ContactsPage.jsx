@@ -6,10 +6,8 @@ import {
   addContact,
   deleteContact,
 } from 'redux/contacts/operations';
-import { setFilter } from 'redux/contacts/filterSlice';
 import {
   selectContacts,
-  selectFilter,
   selectError,
   selectIsLoading,
   selectVisibleContacts,
@@ -23,7 +21,6 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 export default function ContactsPage() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const visibleContacts = useSelector(selectVisibleContacts);
