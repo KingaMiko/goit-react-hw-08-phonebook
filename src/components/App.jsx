@@ -33,7 +33,10 @@ export const App = () => {
       <CircularProgress />
     </Container>
   ) : (
-    <Container maxWidth="md" style={{ marginBottom: '20px' }}>
+    <Container
+      maxWidth="md"
+      style={{ marginBottom: '20px', paddingLeft: 0, paddingRight: 0 }}
+    >
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

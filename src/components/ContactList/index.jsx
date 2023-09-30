@@ -12,41 +12,50 @@ const ContactList = () => {
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredContacts = contacts
+    .filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const handleDelete = id => {
     dispatch(deleteContact(id));
   };
 
   return (
-    <Box sx={{ width: '300px', mt: 3 }}>
+    <Box
+      sx={{
+        maxWidth: '400px',
+        width: '100%',
+        mt: 3,
+        mx: 'auto',
+      }}
+    >
       {filteredContacts.map(({ id, name, number }, index) => (
         <Box
           key={id}
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '10px 0',
-            position: 'relative',
+            padding: '10px 10px',
             borderBottom: '1px solid #ddd',
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <PhoneIcon color="primary" />
+          <PhoneIcon color="primary" sx={{ marginRight: 3 }} />
+          <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="h6" color="secondary" noWrap>
               {name}
             </Typography>
-            <Typography variant="body1" noWrap sx={{ marginLeft: 2 }}>
+          </Box>
+          <Box sx={{ flex: 1, minWidth: 0, marginLeft: 1 }}>
+            <Typography variant="body1" noWrap>
               {number}
             </Typography>
           </Box>
           <IconButton
             onClick={() => handleDelete(id)}
             size="small"
-            sx={{ color: theme.palette.primary.main }}
+            sx={{ color: theme.palette.primary.main, marginLeft: 1 }}
           >
             <DeleteOutlineIcon />
           </IconButton>

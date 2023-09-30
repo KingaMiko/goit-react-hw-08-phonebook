@@ -16,21 +16,30 @@ export const UserMenu = () => {
     <Box
       display="flex"
       alignItems="center"
-      gap={2}
+      justifyContent="flex-end"
       padding={1}
       bgcolor="secondary.main"
       borderRadius="5px"
     >
-      <Typography variant="subtitle1" color="textSecondary">
-        Welcome, {user.name}
-      </Typography>
+      <Box
+        sx={{
+          flexShrink: 1,
+          marginRight: '8px',
+        }}
+      >
+        <Typography variant="caption" color="textSecondary" display="block">
+          Welcome,
+        </Typography>
+        <Typography variant="caption" color="textSecondary" display="block">
+          {user.name}
+        </Typography>
+      </Box>
       <Button
         variant="outlined"
         color="secondary"
         startIcon={<ExitToAppIcon />}
         onClick={handleLogout}
         sx={{
-          marginLeft: 1,
           borderColor: '#FF69B4',
           color: '#FF69B4',
           borderRadius: 3,
