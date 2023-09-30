@@ -28,6 +28,7 @@ export const LoginForm = () => {
       boxShadow="0 9px 50px hsla(20, 67%, 75%, 0.31)"
     >
       <TextField
+        autoComplete="on"
         type="email"
         name="email"
         label="Email"

@@ -64,6 +64,7 @@ export const RegisterForm = () => {
         sx={{ marginBottom: '10px' }}
       />
       <TextField
+        autoComplete="on"
         type="email"
         name="email"
         label="Email"
