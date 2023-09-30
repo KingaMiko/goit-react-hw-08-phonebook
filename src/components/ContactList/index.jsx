@@ -49,7 +49,12 @@ const ContactList = () => {
           </Box>
           <Box sx={{ flex: 1, minWidth: 0, marginLeft: 1 }}>
             <Typography variant="body1" noWrap>
-              {number}
+              <a
+                href={`tel:${number}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                {number}
+              </a>
             </Typography>
           </Box>
           <IconButton
