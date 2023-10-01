@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { Helmet } from 'react-helmet';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -19,6 +20,10 @@ export default function HomePage() {
         <title>Phonebook</title>
       </Helmet>
       <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
         display="flex"
         flexDirection="column"
         alignItems="center"

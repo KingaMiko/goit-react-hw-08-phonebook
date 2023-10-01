@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LockIcon from '@mui/icons-material/Lock';
+import { motion } from 'framer-motion';
 
 export default function LoginPage() {
   return (
@@ -11,13 +12,16 @@ export default function LoginPage() {
         <title>Login</title>
       </Helmet>
       <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center"
-        height="100vh"
+        justifyContent="flex-start"
         background="linear-gradient(45deg, #f2f2f2 30%, #d9d9d9 90%)"
-        overflow="hidden"
+        pt={5}
         position="relative"
       >
         <Box

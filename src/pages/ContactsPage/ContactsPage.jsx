@@ -17,6 +17,7 @@ import ContactForm from 'components/ContactForm/index';
 import Filter from 'components/Filter/index';
 import { Box, Typography, CircularProgress, Alert } from '@mui/material';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import { motion } from 'framer-motion';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -46,6 +47,10 @@ export default function ContactsPage() {
         <title>Contacts</title>
       </Helmet>
       <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
         display="flex"
         flexDirection="column"
         alignItems="center"
