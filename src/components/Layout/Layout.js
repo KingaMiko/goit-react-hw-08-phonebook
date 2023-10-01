@@ -9,10 +9,13 @@ export const Layout = () => {
   return (
     <Box minHeight="100vh" display="flex" flexDirection="column">
       <AppBar />
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Box mt={8}>
+        {' '}
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+        <Toaster position="top-right" reverseOrder={false} />
+      </Box>
       <Footer />
     </Box>
   );

@@ -49,10 +49,9 @@ export default function ContactsPage() {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center"
-        height="100vh"
+        justifyContent="flex-start"
         background="linear-gradient(45deg, #f2f2f2 30%, #d9d9d9 90%)"
-        overflow="hidden"
+        pt={5}
         position="relative"
       >
         <Box
@@ -85,7 +84,6 @@ export default function ContactsPage() {
             }}
           />
         </Box>
-
         <Typography
           variant="h3"
           component="h1"
@@ -103,16 +101,26 @@ export default function ContactsPage() {
         <Filter />
         {isLoading && <CircularProgress />}
         {error && <Alert severity="error">{error.message}</Alert>}
-        {visibleContacts.length > 0 ? (
-          <ContactList
-            contacts={visibleContacts}
-            onDeleteContact={id => dispatch(deleteContact(id))}
-          />
-        ) : (
-          <Typography variant="body1" mt={2}>
-            No contacts available.
-          </Typography>
-        )}
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          width="100%"
+          mt={2}
+          px={2}
+        >
+          {visibleContacts.length > 0 ? (
+            <ContactList
+              contacts={visibleContacts}
+              onDeleteContact={id => dispatch(deleteContact(id))}
+            />
+          ) : (
+            <Typography variant="body1" mt={2}>
+              No contacts available.
+            </Typography>
+          )}
+        </Box>
+        <Box height="20px" />
       </Box>
     </>
   );
