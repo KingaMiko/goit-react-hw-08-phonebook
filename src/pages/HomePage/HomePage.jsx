@@ -6,9 +6,12 @@ import { Helmet } from 'react-helmet';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useAuth } from 'hooks/useAuth';
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const userName = user ? user.name : null;
 
   const handleTryItClick = () => {
     navigate('/login');
@@ -74,13 +77,40 @@ export default function HomePage() {
         >
           Welcome to Phonebook!
         </Typography>
-        <Typography
-          variant="subtitle1"
-          color="rgba(0,0,0,0.5)"
-          textAlign="center"
-        >
-          Your digital directory for contacts.
-        </Typography>
+        {userName && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Typography
+              variant="h5"
+              component="h2"
+              mt={2}
+              color="#733152"
+              textAlign="center"
+            >
+              {userName}!
+            </Typography>
+          </motion.div>
+        )}
+        {userName ? (
+          <Typography
+            variant="subtitle1"
+            color="rgba(0,0,0,0.5)"
+            textAlign="center"
+          >
+            This is your digital directory for contacts.
+          </Typography>
+        ) : (
+          <Typography
+            variant="subtitle1"
+            color="rgba(0,0,0,0.5)"
+            textAlign="center"
+          >
+            Your digital directory for contacts.
+          </Typography>
+        )}
         <Button
           variant="outlined"
           style={{
