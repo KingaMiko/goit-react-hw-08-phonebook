@@ -99,33 +99,52 @@ export default function ContactsPage() {
         >
           Your Contacts
         </Typography>
-        <ContactForm onSubmit={handleSubmit} />
-        <Typography variant="h6" component="p" mt={2}>
-          All contacts: {contacts.length}
-        </Typography>
-        <Filter />
-        {isLoading && <CircularProgress />}
-        {error && <Alert severity="error">{error.message}</Alert>}
         <Box
           display="flex"
-          flexDirection="column"
-          alignItems="center"
+          flexDirection={{ xs: 'column', md: 'row' }}
+          alignItems={{ xs: 'center', md: 'flex-start' }}
+          justifyContent="center"
           width="100%"
-          mt={2}
+          maxWidth="1080px"
           px={2}
         >
-          {visibleContacts.length > 0 ? (
-            <ContactList
-              contacts={visibleContacts}
-              onDeleteContact={id => dispatch(deleteContact(id))}
-            />
-          ) : (
-            <Typography variant="body1" mt={2}>
-              No contacts available.
+          <Box flex="1" mr={{ md: 4 }} mb={{ xs: 2, md: 0 }}>
+            <ContactForm onSubmit={handleSubmit} />
+          </Box>
+
+          <Box
+            flex="2"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Typography variant="h6" component="p" mt={2}>
+              All contacts: {contacts.length}
             </Typography>
-          )}
+            <Filter />
+            {isLoading && <CircularProgress />}
+            {error && <Alert severity="error">{error.message}</Alert>}
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              width="100%"
+              mt={2}
+              px={2}
+            >
+              {visibleContacts.length > 0 ? (
+                <ContactList
+                  contacts={visibleContacts}
+                  onDeleteContact={id => dispatch(deleteContact(id))}
+                />
+              ) : (
+                <Typography variant="body1" mt={2}>
+                  No contacts available.
+                </Typography>
+              )}
+            </Box>
+          </Box>
         </Box>
-        <Box height="20px" />
       </Box>
     </>
   );

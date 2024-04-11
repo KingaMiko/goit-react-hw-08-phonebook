@@ -27,8 +27,8 @@ const ContactList = () => {
       sx={{
         maxWidth: '400px',
         width: '100%',
-        maxHeight: '400px',
-        overflowY: 'auto',
+        maxHeight: { xs: 'none', md: '400px' },
+        overflowY: { xs: 'visible', md: 'auto' },
         mt: 3,
         mx: 'auto',
       }}

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { Box, TextField, Button, Typography } from '@mui/material';
@@ -16,6 +17,15 @@ export const LoginForm = () => {
     );
     form.reset();
   };
+
+  const handleTestLogin = () => {
+    const testCredentials = {
+      email: 'tescik@t.pl',
+      password: 'Tescik1.',
+    };
+    dispatch(logIn(testCredentials));
+  };
+
   return (
     <Box
       component="form"
@@ -73,6 +83,17 @@ export const LoginForm = () => {
       >
         Don't have an account? <Link to="/register">Register here</Link>
       </Typography>
+      <Button
+        onClick={handleTestLogin}
+        variant="contained"
+        color="primary"
+        sx={{
+          mt: 2,
+          width: '100%',
+        }}
+      >
+        Log in with test account
+      </Button>
     </Box>
   );
 };
