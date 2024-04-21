@@ -4,13 +4,18 @@ import { addContact } from 'redux/contacts/operations';
 import { useForm } from '../hooks/useForm';
 
 const ContactForm = () => {
-  const [values, handleChange, resetForm] = useForm({ name: '', number: '' });
+  const [values, handleChange, resetForm, validate, errors] = useForm({
+    name: '',
+    number: '',
+  });
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addContact({ name: values.name, number: values.number }));
-    resetForm();
+    if (validate()) {
+      dispatch(addContact({ name: values.name, number: values.number }));
+      resetForm();
+    }
   };
 
   return (
@@ -33,10 +38,10 @@ const ContactForm = () => {
         placeholder="Name"
         required
         fullWidth
-        InputLabelProps={{
-          shrink: true,
-        }}
+        InputLabelProps={{ shrink: true }}
         sx={{ marginBottom: '10px' }}
+        error={!!errors.name}
+        helperText={errors.name}
       />
       <TextField
         value={values.number}
@@ -48,11 +53,9 @@ const ContactForm = () => {
         fullWidth
         required
         sx={{ marginBottom: '10px' }}
-        pattern="(\+48)?\s?(\d{3}-\d{3}-\d{3}|\d{3}\s\d{3}\s\d{3}|\d{9,11})"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        InputLabelProps={{
-          shrink: true,
-        }}
+        error={!!errors.number}
+        helperText={errors.number}
+        InputLabelProps={{ shrink: true }}
       />
       <Button
         type="submit"
