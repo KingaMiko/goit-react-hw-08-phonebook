@@ -177,8 +177,11 @@ const customList = [
   'hujów',
   'huje',
   'hujami',
+  'kuriwszcz',
 
   // Błędne wersje literowe popularnych wulgaryzmów
+  'kórwa',
+  'kórwę',
   'kvrwa',
   'chvuj',
   'pierdvlę',
@@ -187,7 +190,32 @@ const customList = [
   'pizdva',
 ];
 
-const filter = new Filter({ list: customList });
+const customFilter = new Filter({ emptyList: true });
+customFilter.addWords(...customList);
+
+const defaultFilter = new Filter();
+
+function createProfanityRegex(words) {
+  const pattern = words
+    .map(word =>
+      word
+        .replace(/a/g, '[aą]')
+        .replace(/c/g, '[cć]')
+        .replace(/e/g, '[eę]')
+        .replace(/l/g, '[lł]')
+        .replace(/n/g, '[nń]')
+        .replace(/o/g, '[oó]')
+        .replace(/s/g, '[sś]')
+        .replace(/z/g, '[zźż]')
+        .split('')
+        .join('\\W*')
+    )
+    .join('|');
+
+  return new RegExp(`(${pattern})`, 'gi');
+}
+
+const profanityRegex = createProfanityRegex(customList);
 
 export const useForm = initialValues => {
   const [values, setValues] = useState(initialValues);
@@ -199,6 +227,10 @@ export const useForm = initialValues => {
       ...values,
       [name]: value,
     });
+
+    const hasEnglishProfanity = defaultFilter.isProfane(value);
+    const hasCustomProfanity =
+      customFilter.isProfane(value) || profanityRegex.test(value);
 
     if (name === 'number') {
       if (value === '') {
@@ -227,11 +259,11 @@ export const useForm = initialValues => {
         delete newErrors[name];
         setErrors(newErrors);
       } else {
-        if (filter.isProfane(value)) {
-          setErrors({
-            ...errors,
+        if (hasEnglishProfanity || hasCustomProfanity) {
+          setErrors(prevErrors => ({
+            ...prevErrors,
             [name]: 'Please avoid using offensive language',
-          });
+          }));
         } else {
           const letterCount = (value.match(/[a-zA-Z]/g) || []).length;
           if (letterCount < 3 || value.length > 20) {
@@ -260,11 +292,13 @@ export const useForm = initialValues => {
       !values.name ||
       (values.name.match(/[a-zA-Z]/g) || []).length < 3 ||
       values.name.length > 20 ||
-      filter.isProfane(values.name)
+      defaultFilter.isProfane(values.name) ||
+      profanityRegex.test(values.name)
     ) {
       tempErrors.name =
         'Name must contain at least 3 letters and be no longer than 20 characters and not contain offensive language';
     }
+
     if (
       !values.number.match(
         /(\+48)?\s?(\d{3}-\d{3}-\d{3}|\d{3}\s\d{3}\s\d{3}|\d{9,11})/
@@ -272,6 +306,7 @@ export const useForm = initialValues => {
     ) {
       tempErrors.number = 'Invalid phone number';
     }
+
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
