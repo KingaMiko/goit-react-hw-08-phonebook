@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/goit-react-hw-08-phonebook/static/css/main.f86524ba.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.b99a24f5.js",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.32206078.js",
     "static/js/680.82270c24.chunk.js": "/goit-react-hw-08-phonebook/static/js/680.82270c24.chunk.js",
-    "static/js/463.53d6932a.chunk.js": "/goit-react-hw-08-phonebook/static/js/463.53d6932a.chunk.js",
+    "static/js/463.06a85039.chunk.js": "/goit-react-hw-08-phonebook/static/js/463.06a85039.chunk.js",
     "static/js/815.d3e5510f.chunk.js": "/goit-react-hw-08-phonebook/static/js/815.d3e5510f.chunk.js",
     "static/js/643.f0b83895.chunk.js": "/goit-react-hw-08-phonebook/static/js/643.f0b83895.chunk.js",
     "static/js/474.441d939b.chunk.js": "/goit-react-hw-08-phonebook/static/js/474.441d939b.chunk.js",
@@ -11,9 +11,9 @@
     "static/js/296.5c3366c8.chunk.js": "/goit-react-hw-08-phonebook/static/js/296.5c3366c8.chunk.js",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
     "main.f86524ba.css.map": "/goit-react-hw-08-phonebook/static/css/main.f86524ba.css.map",
-    "main.b99a24f5.js.map": "/goit-react-hw-08-phonebook/static/js/main.b99a24f5.js.map",
+    "main.32206078.js.map": "/goit-react-hw-08-phonebook/static/js/main.32206078.js.map",
     "680.82270c24.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/680.82270c24.chunk.js.map",
-    "463.53d6932a.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/463.53d6932a.chunk.js.map",
+    "463.06a85039.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/463.06a85039.chunk.js.map",
     "815.d3e5510f.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/815.d3e5510f.chunk.js.map",
     "643.f0b83895.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/643.f0b83895.chunk.js.map",
     "474.441d939b.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/474.441d939b.chunk.js.map",
@@ -22,6 +22,6 @@
   },
   "entrypoints": [
     "static/css/main.f86524ba.css",
-    "static/js/main.b99a24f5.js"
+    "static/js/main.32206078.js"
   ]
 }
