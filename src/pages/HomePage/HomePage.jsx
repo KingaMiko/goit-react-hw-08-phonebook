@@ -137,7 +137,7 @@ export default function HomePage() {
           }}
           onClick={handleTryItClick}
         >
-          Try it!
+          {userName ? 'Use it!' : 'Try it!'}
         </Button>
       </Box>
     </>
