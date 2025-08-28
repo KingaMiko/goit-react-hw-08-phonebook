@@ -13,11 +13,10 @@ const Filter = () => {
   };
 
   return (
-    <Box my={2}>
+    <Box my={2} marginBottom="0px">
       <TextField
         variant="outlined"
         maxWidth="200px"
-        marginBottom="0px"
         type="text"
         value={filter}
         onChange={handleFilterChange}

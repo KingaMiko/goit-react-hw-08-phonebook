@@ -25,12 +25,12 @@ const ContactList = () => {
   return (
     <Box
       sx={{
-        maxWidth: '500px',
+        maxWidth: '400px',
         minWidth: '320px',
         width: '100%',
         maxHeight: { xs: 'none', md: '400px' },
         overflowY: { xs: 'visible', md: 'auto' },
-        mt: 3,
+        mt: 0,
         mx: 'auto',
       }}
     >
