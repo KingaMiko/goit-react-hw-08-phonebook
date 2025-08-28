@@ -43,7 +43,14 @@ const ContactList = () => {
             borderBottom: '1px solid #ddd',
           }}
         >
-          <PhoneIcon color="primary" sx={{ marginRight: 3 }} />
+          <IconButton
+            component="a"
+            href={`tel:${number}`}
+            size="small"
+            sx={{ color: theme.palette.primary.main, marginRight: 3 }}
+          >
+            <PhoneIcon />
+          </IconButton>
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="h6" color="secondary" noWrap>
               {name}

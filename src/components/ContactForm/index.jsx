@@ -28,6 +28,7 @@ const ContactForm = () => {
       padding="20px"
       borderRadius="3px"
       boxShadow="0 9px 50px hsla(20, 67%, 75%, 0.31)"
+      marginTop="26px"
     >
       <TextField
         value={values.name}
