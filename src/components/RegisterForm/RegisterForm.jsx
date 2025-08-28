@@ -60,6 +60,9 @@ export const RegisterForm = () => {
         fullWidth
         InputLabelProps={{
           shrink: true,
+          sx: {
+            color: 'grey.700',
+          },
         }}
         sx={{ marginBottom: '10px' }}
       />
@@ -73,6 +76,9 @@ export const RegisterForm = () => {
         fullWidth
         InputLabelProps={{
           shrink: true,
+          sx: {
+            color: 'grey.700',
+          },
         }}
         sx={{ marginBottom: '10px' }}
       />
@@ -85,6 +91,9 @@ export const RegisterForm = () => {
         fullWidth
         InputLabelProps={{
           shrink: true,
+          sx: {
+            color: 'grey.700',
+          },
         }}
         sx={{ marginBottom: '10px' }}
       />
@@ -98,6 +107,9 @@ export const RegisterForm = () => {
         fullWidth
         InputLabelProps={{
           shrink: true,
+          sx: {
+            color: 'grey.700',
+          },
         }}
         sx={{ marginBottom: '10px' }}
       />

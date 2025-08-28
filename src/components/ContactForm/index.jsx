@@ -38,7 +38,12 @@ const ContactForm = () => {
         placeholder="Name"
         required
         fullWidth
-        InputLabelProps={{ shrink: true }}
+        InputLabelProps={{
+          shrink: true,
+          sx: {
+            color: 'grey.700',
+          },
+        }}
         sx={{ marginBottom: '10px' }}
         error={!!errors.name}
         helperText={errors.name}
@@ -55,7 +60,12 @@ const ContactForm = () => {
         sx={{ marginBottom: '10px' }}
         error={!!errors.number}
         helperText={errors.number}
-        InputLabelProps={{ shrink: true }}
+        InputLabelProps={{
+          shrink: true,
+          sx: {
+            color: 'grey.700',
+          },
+        }}
       />
       <Button
         type="submit"

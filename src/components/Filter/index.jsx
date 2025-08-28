@@ -24,6 +24,9 @@ const Filter = () => {
         placeholder="Enter contact name"
         InputLabelProps={{
           shrink: true,
+          sx: {
+            color: 'grey.700',
+          },
         }}
         sx={{
           backgroundColor: 'rgba(255, 255, 255, 0.8)',
