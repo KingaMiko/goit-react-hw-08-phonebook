@@ -17,6 +17,7 @@ const Filter = () => {
       <TextField
         variant="outlined"
         maxWidth="200px"
+        marginBottom="0px"
         type="text"
         value={filter}
         onChange={handleFilterChange}

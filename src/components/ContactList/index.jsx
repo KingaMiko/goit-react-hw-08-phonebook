@@ -25,7 +25,8 @@ const ContactList = () => {
   return (
     <Box
       sx={{
-        maxWidth: '400px',
+        maxWidth: '500px',
+        minWidth: '320px',
         width: '100%',
         maxHeight: { xs: 'none', md: '400px' },
         overflowY: { xs: 'visible', md: 'auto' },
@@ -47,7 +48,7 @@ const ContactList = () => {
             component="a"
             href={`tel:${number}`}
             size="small"
-            sx={{ color: theme.palette.primary.main, marginRight: 3 }}
+            sx={{ color: theme.palette.primary.main, marginRight: 1 }}
           >
             <PhoneIcon />
           </IconButton>
@@ -60,7 +61,11 @@ const ContactList = () => {
             <Typography variant="body1" noWrap>
               <a
                 href={`tel:${number}`}
-                style={{ textDecoration: 'none', color: 'inherit' }}
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  overflow: 'visible',
+                }}
               >
                 {number}
               </a>
